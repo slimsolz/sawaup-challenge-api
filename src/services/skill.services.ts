@@ -30,18 +30,16 @@ export async function updateSkill(id: number, input: Prisma.SkillUpdateInput) {
   return await prisma.skill.update({ where: { id }, data: { ...input } });
 }
 
-export async function skillExists(input: string | number): Promise<boolean> {
+export async function skillExists(input: string | number): Promise<number> {
   let filter = {};
 
   if (typeof input === "number") {
     filter = { id: input };
-  } else if (input === "string") {
+  } else if (typeof input === "string") {
     filter = { name: input };
   }
 
-  const result = await prisma.skill.count({
+  return await prisma.skill.count({
     where: filter,
   });
-
-  return !!result;
 }

@@ -66,7 +66,7 @@ class SkillController {
       }
 
       await deleteSkill(id);
-      return successResponse(res, 204, "skill removed");
+      return successResponse(res, 204, "");
     } catch (error: any) {
       next(error);
     }
