@@ -11,6 +11,7 @@
     "start": "yarn serve",
     "start:dev": "yarn build && yarn serve",
     "watch-node": "nodemon -r build/server.js",
+    "p:format": "prisma format",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/slimsolz/sawaup-challenge-api#readme",
   "dependencies": {
+    "@prisma/client": "4.8.0",
     "@types/helmet": "^4.0.0",
     "@types/jest": "^29.2.5",
     "cors": "^2.8.5",
