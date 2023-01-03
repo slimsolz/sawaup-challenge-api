@@ -14,8 +14,12 @@ app.use(cors());
 app.use("/api/v1/", routes);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.log(">>>>", err);
-  errorResponse(res, 400, err.message);
+  console.log(">>>>name", err.name);
+  if (err.name === "NotFoundError") {
+    return errorResponse(res, 404, err.message);
+  }
+
+  return errorResponse(res, 400, err.message);
 });
 
 app.listen(port, () => {

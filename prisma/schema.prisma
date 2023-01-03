@@ -10,16 +10,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// model Course {
+//   id Int @default(autoincrement()) @id
+//   name String
+//   url String @unique
+//   skills Skill[]
+// }
+
+// model Skill {
+//   id Int @default(autoincrement()) @id
+//   name String
+//   skill Course @relation(fields: [skillId], references: [id])
+//   skillId Int
+// }
+
+
 model Course {
-  id Int @default(autoincrement()) @id
+  id Int @id @default(autoincrement())
   name String
   url String @unique
-  skills Skill[]
+  skills SkillsOnCourse[]
 }
 
 model Skill {
-  id Int @default(autoincrement()) @id
+  id Int @id @default(autoincrement())
   name String
-  skill Course @relation(fields: [skillId], references: [id])
+  courses SkillsOnCourse[]
+}
+
+model SkillsOnCourse {
+  skill Skill @relation(fields: [skillId], references: [id])
   skillId Int
+  course Course @relation(fields: [courseId], references: [id])
+  courseId Int
+
+  @@id([skillId, courseId])
 }
