@@ -24,9 +24,9 @@ model Skill {
 }
 
 model SkillsOnCourse {
-  skill Skill @relation(fields: [skillId], references: [id])
+  skill Skill @relation(fields: [skillId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   skillId Int
-  course Course @relation(fields: [courseId], references: [id])
+  course Course @relation(fields: [courseId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   courseId Int
 
   @@id([skillId, courseId])
