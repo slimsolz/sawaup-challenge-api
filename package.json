@@ -14,7 +14,7 @@
     "p:format": "prisma format",
     "db:reset": "npx prisma migrate reset",
     "db:migrate": "dotenv -e .env.dev npx prisma migrate dev",
-    "pretest": "dotenv -e .env.test yarn db:migrate",
+    "pretest": "dotenv -e .env.test yarn db:reset",
     "test": "dotenv -e .env.test jest --detectOpenHandles --coverage --verbose --forceExit"
   },
   "repository": {
@@ -32,6 +32,9 @@
     "testEnvironment": "node",
     "verbose": true,
     "collectCoverage": true,
+    "setupFilesAfterEnv": [
+      "./src/tests/setup.ts"
+    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/"
     ]

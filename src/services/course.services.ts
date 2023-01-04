@@ -3,7 +3,7 @@ import { PrismaClient, Prisma } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function addCourse(input: any) {
-  const connectQuery = input.skills?.map((id: number) => {
+  const connectQuery = input.skills.map((id: number) => {
     return {
       skill: {
         connect: {
