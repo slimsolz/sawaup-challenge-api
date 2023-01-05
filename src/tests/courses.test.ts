@@ -61,6 +61,45 @@ describe("SKILLS TESTS", () => {
     expect(res.body).toHaveProperty("message", "course retrieved");
   });
 
+  it("I should fail to favorite a course that doesn't exist", async () => {
+    const res = await request(app).post("/api/v1/courses/favorite/10001");
+    expect(res).toHaveProperty("status", 404);
+    expect(res.body).toHaveProperty("status", "error");
+    expect(res.body).toHaveProperty("message", "course not found");
+  });
+
+  it("I should be able to favorite a course", async () => {
+    const res = await request(app)
+      .post(`/api/v1/courses/favorite/${courseId}`)
+      .send({ name: "Guest100" });
+    expect(res).toHaveProperty("status", 200);
+    expect(res.body).toHaveProperty("status", "success");
+    expect(res.body).toHaveProperty("message", "added to favorite");
+  });
+
+  it("I should be able to get all courses with user like", async () => {
+    const res = await request(app).get("/api/v1/courses?user=Guest100");
+    expect(res).toHaveProperty("status", 200);
+    expect(res.body).toHaveProperty("status", "success");
+    expect(res.body).toHaveProperty("message", "courses retrieved");
+  });
+
+  it("I should be able to get all courses with user like", async () => {
+    const res = await request(app).get("/api/v1/courses?user=Guest101");
+    expect(res).toHaveProperty("status", 200);
+    expect(res.body).toHaveProperty("status", "success");
+    expect(res.body).toHaveProperty("message", "courses retrieved");
+  });
+
+  it("I should be able to  unfavorite a course", async () => {
+    const res = await request(app)
+      .post(`/api/v1/courses/favorite/${courseId}`)
+      .send({ name: "Guest100" });
+    expect(res).toHaveProperty("status", 200);
+    expect(res.body).toHaveProperty("status", "success");
+    expect(res.body).toHaveProperty("message", "removed from favorite");
+  });
+
   it("I should be able to remove a course", async () => {
     const res = await request(app).delete(`/api/v1/courses/${courseId}`);
     expect(res).toHaveProperty("status", 204);

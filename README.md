@@ -16,6 +16,7 @@ A simple api that gives to users the ability to select skills and see the course
 - View all courses based on selected skills : `GET /api/v1/courses?ids=[1,2]`
 - View single course : `GET /api/v1/courses/:id`
 - Delete course : `DELETE /api/v1/courses/:id`
+- Toggle favorite a course: `POST /api/v1/courses/favorite/:id`
 
 - favorite a course : `POST /api/v1/course/:id/like`
 

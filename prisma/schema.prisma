@@ -15,6 +15,7 @@ model Course {
   name String
   url String @unique
   skills SkillsOnCourse[]
+  users LikeOnCourse[]
 }
 
 model Skill {
@@ -30,4 +31,19 @@ model SkillsOnCourse {
   courseId Int
 
   @@id([skillId, courseId])
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name String
+  likes LikeOnCourse[]
+}
+
+model LikeOnCourse {
+  course Course @relation(fields: [courseId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  courseId Int
+  user User @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  userId Int
+
+  @@id([userId, courseId])
 }

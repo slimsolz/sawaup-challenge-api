@@ -15,7 +15,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     return errorResponse(res, 404, err.message);
   }
 
-  return errorResponse(res, 500, 'Internal Error');
+  return errorResponse(res, 500, "Internal Error");
 });
 
 export default app;

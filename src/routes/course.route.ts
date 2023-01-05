@@ -13,5 +13,6 @@ courseRouter.post(
 courseRouter.get("/", CourseController.getAllCoursesHandler);
 courseRouter.get("/:id", CourseController.getCourseHandler);
 courseRouter.delete("/:id", CourseController.removeCourseHandler);
+courseRouter.post("/favorite/:id", CourseController.favoriteCourseHandler);
 
 export default courseRouter;

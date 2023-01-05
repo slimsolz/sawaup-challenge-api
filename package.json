@@ -12,7 +12,7 @@
     "start:dev": "yarn build && yarn serve",
     "watch-node": "nodemon -r build/server.js",
     "p:format": "prisma format",
-    "db:reset": "npx prisma migrate reset",
+    "db:reset": "dotenv -e .env.dev npx prisma migrate reset",
     "db:migrate": "dotenv -e .env.dev npx prisma migrate dev",
     "pretest": "dotenv -e .env.test yarn db:reset",
     "test": "dotenv -e .env.test jest --detectOpenHandles --coverage --verbose --forceExit"
