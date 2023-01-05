@@ -18,6 +18,7 @@ export async function addCourse(input: any) {
     data: {
       name: input.name,
       url: input.url,
+      thumbnail: input.thumbnail,
       skills: {
         create: [...connectQuery],
       },

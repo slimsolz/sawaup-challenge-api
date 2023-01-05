@@ -7,10 +7,11 @@ let courseId: number;
 const data = {
   name: faker.lorem.slug(1),
   url: faker.internet.url(),
+  thumbnail: faker.image.imageUrl(),
   skills: [1, 2, 3, 4],
 };
 
-describe("SKILLS TESTS", () => {
+describe("COURSES TESTS", () => {
   it("I should not be able to create a new course if validation fails", async () => {
     const res = await request(app).post("/api/v1/courses").send({});
     expect(res).toHaveProperty("status", 422);
