@@ -7,6 +7,7 @@ import {
   getCourse,
   courseExists,
   toggleCourseFavorite,
+  findCourseByUrl,
 } from "../services/course.services";
 
 class CourseController {
@@ -16,6 +17,10 @@ class CourseController {
     next: NextFunction
   ) {
     try {
+      if (await findCourseByUrl(req.body.url)) {
+        return errorResponse(res, 409, "course with url already exists");
+      }
+
       const data = await addCourse({ ...req.body });
       return successResponse(res, 201, "course added successfully", data);
     } catch (error: any) {

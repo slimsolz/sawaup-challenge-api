@@ -1,0 +1,353 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Online-course-api
+  description: API for online courses
+  # Developer contact
+  contact:
+    email: odumahs@gmail.com
+basePath: /api/v1
+
+# tags are used for organizing operations
+tags:
+- name: skills
+  description: Operation for skills
+- name: courses
+  description: Operation for courses
+
+paths:
+  /skills:
+    post:
+      tags:
+        - skills
+      summary:  Create new skill
+      produces:
+      - application/json
+      parameters:
+      - name: name
+        in: formData
+        description: skill name
+        type: string
+        required: true
+      responses:
+        201:
+          description: skill added successfully
+          examples:
+            application/json:
+              status: success
+              message: skill added successfully
+              data:
+                id: 1
+                name: skill name
+        409:
+          description: Duplicate Skill
+          examples:
+            application/json:
+              status: error
+              message: skill already exists
+        442:
+            description: Validation failed
+            examples:
+              application/json:
+                status: error
+                message: name is required
+
+    get:
+      tags:
+        - skills
+      summary: Get all skills
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: name
+          type: string
+          description: skill name
+      responses:
+        200:
+          description: A list of all skills
+          examples:
+            application/json:
+              status: success
+              message: skills retrieved successfully
+              data:
+                - id: 1
+                  name: skill one
+                - id: 1
+                  name: skill two
+
+  /skills/{id}:
+    get:
+      tags:
+        - skills
+      summary: Get a single skill
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: the id for the skill
+          type: string
+      responses:
+        200:
+          description: Returns just one skill
+          examples:
+            application/json:
+              status: success
+              message: skill retrieved
+              data:
+                - id: 1
+                  name: skill one
+        404:
+          description: Not found
+          examples:
+            application/json:
+              status: error
+              message: skill not found
+
+    put:
+      tags:
+        - skills
+      summary: Update a specific skill
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: the id for the skill
+        type: string
+      - name: name
+        in: formData
+        description: name of the skill
+        type: string
+        required: true
+      responses:
+        200:
+          description: skill updated
+          examples:
+            application/json:
+              status: success
+              message: skill updated
+              skill:
+                id: 1
+                name: updated skill name
+        442:
+            description: Validation failed
+            examples:
+              application/json:
+                status: error
+                message: name is required
+        404:
+          description: Not found
+          examples:
+            application/json:
+              status: error
+              message: skill not found
+
+    delete:
+      tags:
+        - skills
+      summary: Deletes a single skill
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: the id for the skill
+        type: string
+      responses:
+        204:
+          description: Removes just one existing skill
+          examples:
+            application/json:
+              status: success
+        404:
+          description: Not found
+          examples:
+            application/json:
+              status: error
+              message: skill not found
+
+  /courses:
+    post:
+      tags:
+        - courses
+      summary:  Create new course
+      produces:
+      - application/json
+      parameters:
+        - in: body
+          name: course
+          description: The data to create a new course.
+          schema:
+            type: object
+            required:
+              - userName
+            properties:
+              name:
+                type: string
+                example: Test course
+              url:
+                type: string
+                example: testCourses.com
+              skills:
+                type: array
+                items:
+                  type: integer
+                example: [1, 2, 3]
+      responses:
+        201:
+          description: course added successfully
+          examples:
+            application/json:
+              status: success
+              message: course added successfully
+              data:
+                id: 1
+                name: course name
+                url: course video url
+                skills: course skills
+        409:
+          description: Duplicate course
+          examples:
+            application/json:
+              status: error
+              message: course with url already exists
+        442:
+            description: Validation failed
+            examples:
+              application/json:
+                status: error
+                message: name is required
+
+    get:
+      tags:
+        - courses
+      summary: Get all courses
+      produces:
+      - application/json
+      parameters:
+        - in: query
+          name: user
+          type: string
+          description: user id (to get guest users favorite courses)
+        - in: query
+          name: page
+          type: string
+          description: current page number
+        - in: query
+          name: limit
+          type: string
+          description: page limit
+        - in: query
+          name: ids
+          type: array
+          description: page limit
+      responses:
+        200:
+          description: A list of all courses
+          examples:
+            application/json:
+              status: success
+              message: courses retrieved successfully
+              data:
+                - id: 1
+                  name: course one
+                  url: url
+                  skills: [1, 2, 3]
+                - id: 1
+                  name: course two
+                  url: url
+                  skills: [1, 2, 3]
+
+  /courses/{id}:
+    get:
+      tags:
+        - courses
+      summary: Get single course
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          description: course id
+      responses:
+        200:
+          description: retrieve course
+          examples:
+            application/json:
+              status: success
+              message: courses retrieved successfully
+              data:
+                - id: 1
+                  name: course one
+                  url: url
+                  skills: [1, 2, 3]
+
+    delete:
+      tags:
+        - courses
+      summary: Deletes a single course
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        required: true
+        description: the id for course
+        type: string
+      responses:
+        204:
+          description: Removes just one existing course
+          examples:
+            application/json:
+              status: success
+        404:
+          description: Not found
+          examples:
+            application/json:
+              status: error
+              message: course not found
+
+  /courses/favorite/{id}:
+    post:
+      tags:
+        - courses
+      summary:  Mark or remove course as favorite
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: id
+          description: course id
+        - in: body
+          name: course
+          description: request body
+          schema:
+            type: object
+            required:
+              - userName
+            properties:
+              name:
+                type: string
+                example: guest user name
+      responses:
+        200:
+          description: added to favorite
+          examples:
+            application/json:
+              status: success
+              message: added to favorite
+              data:
+                courseId: 22
+                userId: 3
+        404:
+          description: not found
+          examples:
+            application/json:
+              status: error
+              message: course not found

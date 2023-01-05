@@ -18,8 +18,6 @@ A simple api that gives to users the ability to select skills and see the course
 - Delete course : `DELETE /api/v1/courses/:id`
 - Toggle favorite a course: `POST /api/v1/courses/favorite/:id`
 
-- favorite a course : `POST /api/v1/course/:id/like`
-
 ## Getting Started
 
 - Install NodeJS and yarn on your computer
@@ -38,7 +36,7 @@ A simple api that gives to users the ability to select skills and see the course
 
 ## Documentation
 
-- Find app documentation at `swagger link goes here`
+- Find app documentation at `/api-docs`
 
 ## Technologies
 

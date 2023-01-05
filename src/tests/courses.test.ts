@@ -26,6 +26,16 @@ describe("SKILLS TESTS", () => {
     expect(res.body).toHaveProperty("message", "course added successfully");
   });
 
+  it("I should not be able to create a new course if url already exists", async () => {
+    const res = await request(app).post("/api/v1/courses").send(data);
+    expect(res).toHaveProperty("status", 409);
+    expect(res.body).toHaveProperty("status", "error");
+    expect(res.body).toHaveProperty(
+      "message",
+      "course with url already exists"
+    );
+  });
+
   it("I should be able to get all courses", async () => {
     const res = await request(app).get("/api/v1/courses");
     expect(res).toHaveProperty("status", 200);

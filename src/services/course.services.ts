@@ -109,6 +109,12 @@ export async function courseExists(id: number): Promise<number> {
   });
 }
 
+export async function findCourseByUrl(url: string): Promise<number> {
+  return await prisma.course.count({
+    where: { url },
+  });
+}
+
 export async function toggleCourseFavorite(name: string, courseId: number) {
   let result;
   let message = "added to favorite";
