@@ -35,7 +35,11 @@ export async function getAllCourses(
   let filter = {};
   let user;
   let includeParams: any = {
-    skills: true,
+    skills: {
+      select: {
+        skill: true,
+      },
+    },
   };
 
   if (userName) {

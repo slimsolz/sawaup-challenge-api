@@ -24,7 +24,9 @@ A simple api that gives to users the ability to select skills and see the course
 - Use the .env.sample file to setup your environmental variables
 - This projects requires two `.env` files, one for test `.env.test` and the other for development `.env.dev`
 - Run `npm install` or `yarn install` to install all dependencies
+- Run `npm run db:reset` or `yarn db:reset` to reset the database
 - Run `npm run db:migrate` or `yarn db:migrate` to migrate the database
+- Run `npm run db:seed:dev` or `yarn db:seed:dev` to seed the database
 - Run `npm run dev` or `yarn dev` to start the server locally
 - Run `npm run build` or `yarn build` to build the project for production
 - Run `npm start` or `yarn start` to start the server after build

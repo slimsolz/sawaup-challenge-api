@@ -40,7 +40,7 @@ class CourseController {
   ) {
     try {
       const page = parseInt(req.query?.page, 10) || 1;
-      const limit = parseInt(req.query?.limit, 10) || 3;
+      const limit = parseInt(req.query?.limit, 10) || 10;
 
       const data = await getAllCourses(
         req.query?.ids,
