@@ -15,6 +15,7 @@
     "db:migrate": "npx prisma migrate dev",
     "db:seed": "npx ts-node-dev prisma/seed.ts",
     "db:seed:dev": "dotenv -e .env.dev yarn db:seed",
+    "db:migrate:prod": "npx prisma migrate deploy",
     "pretest": "dotenv -e .env.test yarn db:reset",
     "test": "dotenv -e .env.test jest --detectOpenHandles --coverage --verbose --forceExit"
   },

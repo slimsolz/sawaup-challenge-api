@@ -38,7 +38,11 @@ A simple api that gives to users the ability to select skills and see the course
 
 ## Documentation
 
-- Find app documentation at `/api-docs`
+- Find app documentation at `https://sawaup-challenge.onrender.com/api-docs`
+
+## Using the Live App
+
+- The live application is hosted at `https://sawaup-challenge.onrender.com/api/v1` (note: don't for get to include `/api/v1/` when making a request to any endpoint)
 
 ## Technologies
 
