@@ -1,6 +1,6 @@
 import { PrismaClient, Prisma } from "@prisma/client";
 
-const prisma = new PrismaClient({datasources: { db: { url: `${process.env.DATABASE_URL}?connection_limit=1` } },});
+const prisma = new PrismaClient({datasources: { db: { url: `${process.env.DATABASE_URL}connection_limit=1` } },});
 
 export async function addNewSkill(input: Prisma.SkillCreateInput) {
   return await prisma.skill.create({
