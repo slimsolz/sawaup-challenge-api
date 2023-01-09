@@ -2,7 +2,7 @@ import { PrismaClient, Prisma } from "@prisma/client";
 
 const prisma = new PrismaClient({
   datasources: {
-    db: { url: `${process.env.DATABASE_URL}&connection_limit=1` },
+    db: { url: `${process.env.DATABASE_URL}?connection_limit=1` },
   },
 });
 

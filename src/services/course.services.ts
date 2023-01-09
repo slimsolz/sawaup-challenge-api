@@ -2,7 +2,7 @@ import { PrismaClient, Prisma } from "@prisma/client";
 import { addGuestUser, findUser } from "./user.services";
 
 const prisma = new PrismaClient({
-  datasources: { db: { url: `${process.env.DATABASE_URL}&connection_limit=1` } },
+  datasources: { db: { url: `${process.env.DATABASE_URL}connection_limit=1` } },
 });
 
 export async function addCourse(input: any) {
