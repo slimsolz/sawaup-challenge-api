@@ -8,3 +8,4 @@ jspm_packages/
 .DS_Store
 .env.test
 .env.dev
+build
